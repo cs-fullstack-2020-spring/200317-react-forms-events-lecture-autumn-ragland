@@ -15,9 +15,14 @@ class StudentForm extends Component {
         this.state.studentArray.push(
             {
                 name: this.state.studentName,
-                grade: this.state.studentGrade
+                grade: this.state.studentGrade,
             });
+        this.setState({studentArray : this.state.studentArray});
         console.log(this.state.studentArray);
+        this.setState({
+            studentName: " ",
+            studentGrade: 0,
+        });
     }
 
     handleNameChange = (event) => {
@@ -28,6 +33,14 @@ class StudentForm extends Component {
         this.setState({ studentGrade: event.target.value });
     }
 
+    handleInputChange = (event) => {
+        if(event.target.name == "studentName") {
+            this.setState({studentName : event.target.value})
+        } else if (event.target.name == "studentGrade"){
+            this.setState({studentGrade : event.target.value})
+        }
+    }
+
     render() {
         return (
             <div>
@@ -35,14 +48,26 @@ class StudentForm extends Component {
                 <form action="">
                     <fieldset>
                         <label htmlFor="studentName">Student Name : </label>
-                        <input type="text" name="studentName" id="studentName" value={this.state.studentName} onChange={this.handleNameChange} />
+                        <input type="text" name="studentName" id="studentName" value={this.state.studentName} onChange={this.handleInputChange} />
 
                         <label htmlFor="studentGrade">Student Grade : </label>
-                        <input type="number" name="studentGrade" id="studentGrade" value={this.state.studentGrade} onChange={this.handleGradeChange} />
+                        <input type="number" name="studentGrade" id="studentGrade" value={this.state.studentGrade} onChange={this.handleInputChange} />
 
                         <button onClick={this.handleSubmission}>Submit</button>
                     </fieldset>
                 </form>
+                <div>
+                    {
+                        this.state.studentArray.map((student, index) => {
+                            return (
+                                <div key = {index}>
+                                    <p>Student Name : {student.name}</p>
+                                    <p>Student Grade : {student.grade}</p>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
             </div>
         )
     }
