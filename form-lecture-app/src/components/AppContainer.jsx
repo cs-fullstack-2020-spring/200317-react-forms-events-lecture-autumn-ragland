@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Review from './Review';
+import StudentForm from './StudentForm';
 
 class AppContainer extends Component {
     constructor(props) {
@@ -17,10 +18,11 @@ class AppContainer extends Component {
         return (
             <div>
                 <h1>03 17 20</h1>
-                <div>
+                {/* <div>
                     <h2>The button has been clicked {this.state.buttonClicks} times</h2>
                     <Review updateButtonClick={this.updateButtonClick} reviewTitle="Forms and Events" />
-                </div>
+                </div> */}
+                <StudentForm/>
             </div>
         )
     }
